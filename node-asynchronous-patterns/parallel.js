@@ -12,6 +12,9 @@ Promise.race([
   writeFile("readme.me", "Hello World"),
   writeFile("readme.txt", "Hello World"),
   writeFile("readme.json", '{"hello": "world"}'),
+  unlink("readme.me"),
+  unlink("readme.txt"),
+  unlink("readme.json"),
 ])
   .then(() => readdir(__dirname))
   .then(console.log);
