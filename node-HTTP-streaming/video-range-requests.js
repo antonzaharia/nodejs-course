@@ -1,10 +1,10 @@
 const { createServer } = require("http");
-const { stat, createReadStream, createWriteStream } = require("fs");
+const { stat, createReadStream } = require("fs");
 const { promisify } = require("util");
 const fileName = "sample.mp4";
 const fileInfo = promisify(stat);
 
-const respondWithVideo = async (req, res) => {
+createServer(async (req, res) => {
   const { size } = await fileInfo(fileName);
   const range = req.headers.range;
 
@@ -22,22 +22,5 @@ const respondWithVideo = async (req, res) => {
   } else {
     res.writeHead(200, { "Content-Length": size, "Content-Type": "video/mp4" });
     createReadStream(fileName).pipe(res);
-  }
-};
-
-createServer((req, res) => {
-  if (req.method === "POST") {
-    req.pipe(res);
-    req.pipe(process.stdout);
-    req.pipe(createWriteStream("./upload.file"));
-  } else if (req.url === "/video") {
-    respondWithVideo(req, res);
-  } else {
-    res.writeHead(200, { "Content-Type": "text/html" });
-    res.end(`
-    <form enctype="multipart/form-data" method="post" action="/">
-      <input type="file" name="upload-file" />
-      <button>Upload File</button>
-    </form>`);
   }
 }).listen(3000, () => console.log("server running - 3000"));
