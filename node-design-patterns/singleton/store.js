@@ -1,5 +1,5 @@
 const Logger = require("./logger");
-const logger = new Logger();
+const logger = new Logger().getInstance();
 
 class Store {
   constructor(name, inventory = []) {
