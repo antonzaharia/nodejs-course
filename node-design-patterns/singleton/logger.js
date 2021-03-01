@@ -11,4 +11,5 @@ class Logger {
     console.log(`${timestamp} - ${message}`);
   }
 }
+
 module.exports = Logger;
