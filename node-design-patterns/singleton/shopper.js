@@ -1,5 +1,4 @@
-const Logger = require("./logger");
-const logger = new Logger().getInstance();
+const logger = require("./logger");
 
 class Shopper {
   constructor(name, money = 0) {
