@@ -9,3 +9,5 @@ const charles = new PersonBuilder("Charles")
   .withList(["jeans", "sunglasses"])
   .build();
 const tabitha = new PersonBuilder("Tabitha").withMoney(1000).build();
+
+[sue, bill, phil, charles, tabitha].forEach((p) => console.log(p.toString()));
