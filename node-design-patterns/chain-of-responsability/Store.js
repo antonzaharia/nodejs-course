@@ -1,4 +1,4 @@
-const Storeage = require("./Storage");
+const Storage = require("./Storage");
 class Store {
   constructor(name, inventory = []) {
     this.name = name;
