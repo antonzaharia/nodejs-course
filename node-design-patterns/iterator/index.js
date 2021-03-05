@@ -12,7 +12,7 @@ const inventory = new Iterator([
   new InventoryItem("Fries", 2.99),
   new InventoryItem("Shake", 4.99),
   new InventoryItem("Jeans", 59.99),
-  new InventoryItem("SHoes", 39.99),
+  new InventoryItem("Shoes", 39.99),
 ]);
 
 process.stdin.on("keypress", (str, key) => {
@@ -24,6 +24,7 @@ process.stdin.on("keypress", (str, key) => {
       break;
     case "left":
       inventory.prev().writeLn();
+      break;
     case "down":
       inventory.last().writeLn();
       break;
