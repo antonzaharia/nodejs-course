@@ -1,4 +1,4 @@
-const { writeFile } = require("fs");
+const { writeFile, unlink } = require("fs");
 const path = require("path");
 class ExitCommand {
   get name() {
@@ -20,6 +20,9 @@ class CreateCommand {
   }
   execute() {
     writeFile(this.fullPath, this.body, (f) => f);
+  }
+  undo() {
+    unlink(this.fullPath, (f) => f);
   }
 }
 module.exports = { ExitCommand, CreateCommand };
