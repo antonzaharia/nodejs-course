@@ -6,7 +6,21 @@ module.exports = {
     path: path.resolve("public"),
     filename: "bundle.js",
   },
+  resolve: {
+    extensions: ["", ".js", ".jsx"],
+  },
   module: {
+    loaders: [
+      {
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        loaders: "babel-loader",
+      },
+      {
+        test: /\.html$/,
+        loader: "file?name=[name].[ext]",
+      },
+    ],
     rules: [
       {
         test: /\.js$/,
