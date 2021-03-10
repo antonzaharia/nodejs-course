@@ -12,22 +12,12 @@ module.exports = {
   module: {
     loaders: [
       {
-        test: /\.jsx?$/,
-        exclude: /node_modules/,
-        loaders: "babel-loader",
+        test: /\.json$/,
+        loader: "json-loader",
       },
-      {
-        test: /\.html$/,
-        loader: "file?name=[name].[ext]",
-      },
-    ],
-    rules: [
       {
         test: /\.js$/,
-        exclude: /node_modules/,
-        use: {
-          loader: "babel-loader",
-        },
+        loader: "babel-loader",
       },
     ],
   },
