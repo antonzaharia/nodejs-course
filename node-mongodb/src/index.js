@@ -1,13 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import PropTypes from "prop-types";
 
 const Header = ({ message }) => {
   return <h2 className="text-center">{message}</h2>;
 };
-App.propTypes = {
-  message: React.PropTypes.string,
+Header.propTypes = {
+  message: PropTypes.string,
 };
-App.defaultProps = {
+Header.defaultProps = {
   message: "Hello!",
 };
 
