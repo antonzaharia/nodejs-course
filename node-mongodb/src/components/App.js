@@ -4,7 +4,10 @@ import ContestPreview from "./ContestPreview";
 import axios from "axios";
 
 class App extends React.Component {
-  state = { contests: [], pageHeader: "Naming Contests" };
+  state = {
+    contests: this.props.initialContest,
+    pageHeader: "Naming Contests",
+  };
   componentDidMount() {
     axios
       .get("/api/contests")
