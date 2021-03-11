@@ -7,9 +7,12 @@ import App from "./src/components/App";
 
 const serverRender = () => {
   return axios.get(`${config.serverUrl}/api/contests`).then((resp) => {
-    return ReactDOMServer.renderToString(
-      <App initialContest={resp.data.contests} />
-    );
+    return {
+      initialMarkup: ReactDOMServer.renderToString(
+        <App initialContest={resp.data.contests} />
+      ),
+      initialData: resp.data,
+    };
   });
 };
 export default serverRender;
