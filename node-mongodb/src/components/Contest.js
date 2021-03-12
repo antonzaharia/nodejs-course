@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 
 export default class Contest extends Component {
   render() {
-    return <div className="Contest">{this.props.id}</div>;
+    return <div className="Contest">{this.props.description}</div>;
   }
 }
 Contest.propTypes = {
-  id: PropTypes.number.isRequired,
+  description: PropTypes.string.isRequired,
 };
