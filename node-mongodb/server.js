@@ -2,6 +2,7 @@ import config from "./config";
 import apiRouter from "./api";
 import express from "express";
 import sassMiddleware from "node-sass-middleware";
+import serverRender from "./serverRender";
 import path from "path";
 
 const server = express();
@@ -14,10 +15,8 @@ server.use(
 );
 server.set("view engine", "ejs");
 
-import serverRender from "./serverRender";
-
-server.get("/", (req, res) => {
-  serverRender()
+server.get(["/", "/contest/:contestId"], (req, res) => {
+  serverRender(req.params.contestId)
     .then(({ initialMarkup, initialData }) => {
       res.render("index", {
         initialMarkup,
@@ -31,5 +30,5 @@ server.use("/api", apiRouter);
 server.use(express.static("public"));
 
 server.listen(config.port, config.host, () => {
-  console.log("Express listening on port ", config.port);
+  console.info("Express listening on port ", config.port);
 });
