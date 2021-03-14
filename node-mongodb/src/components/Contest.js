@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 export default class Contest extends Component {
+  componentDidMount() {
+    this.props.fetchNames(this.props.nameIds);
+  }
   render() {
     return (
       <div className="Contest">
@@ -20,8 +23,11 @@ export default class Contest extends Component {
           </div>
           <div className="panel-body">
             <ul className="list-group">
-              <li className="list-group-item">Name one...</li>
-              <li className="list-group-item">Name two...</li>
+              {this.props.nameIds.map((nameId) => (
+                <li className="list-group-item" key={nameId}>
+                  {this.props.lookupName(nameId).name}
+                </li>
+              ))}
             </ul>
           </div>
         </div>
@@ -59,4 +65,7 @@ export default class Contest extends Component {
 Contest.propTypes = {
   description: PropTypes.string.isRequired,
   contestListClick: PropTypes.func.isRequired,
+  fetchNames: PropTypes.func.isRequired,
+  nameIds: PropTypes.array.isRequired,
+  lookupName: PropTypes.func.isRequired,
 };
