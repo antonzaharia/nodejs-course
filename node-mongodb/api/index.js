@@ -32,6 +32,26 @@ router.get("/contests", (req, res) => {
       contests[contest.id] = contest;
     });
 });
+router.get("/names/:nameIds", (req, res) => {
+  const nameIds = req.params.nameIds.split(",").map(Number);
+  let contests = {};
+  mdb
+    .collection("names")
+    .find({ id: { $in: nameIds } })
+    .project({
+      id: 1,
+      categoryName: 1,
+      contestName: 1,
+    })
+    .each((err, contest) => {
+      assert.strictEqual((null, err));
+      if (!contest) {
+        res.send({ contests });
+        return;
+      }
+      contests[contest.id] = contest;
+    });
+});
 router.get("/contests/:contestId", (req, res) => {
   mdb
     .collection("contests")
