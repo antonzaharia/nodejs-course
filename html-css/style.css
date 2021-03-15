@@ -1,0 +1,21 @@
+.container {
+    background-image: url("layout.png");
+    background-color: #cccccc;
+    background-repeat: no-repeat, repeat;
+    background-position: center;
+    background-size: cover;
+    width: 1000px;
+    height: 500px;
+}
+.input {
+    width: 430px;
+    height: 231px;
+    position: absolute;
+    transform:
+      perspective(1000px)
+      rotateX(1.5deg)
+      rotateY(-45deg)
+      rotateZ(0deg);
+    left: 443px;
+    top: 150px;
+}
